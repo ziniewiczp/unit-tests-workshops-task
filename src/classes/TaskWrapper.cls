@@ -3,7 +3,7 @@ public class TaskWrapper {
     private TaskSchema tSchema;
     private Task record;
     private String jsonValue;
-    
+
     public TaskWrapper(String jsonValue) {
         this.jsonValue = jsonValue.replace('"id"', '"taskId"');
         try {
@@ -12,11 +12,12 @@ public class TaskWrapper {
             throw new WrongTaskSchemaException(ex.getMessage());
         }
     }
-    
+
     public TaskWrapper(TaskSchema tSchema) {
         this.tSchema = tSchema;
     }
-    
+
+    @TestVisible
     private Task generateRecord() {
         Task task = new Task();
         task.Status = tSchema.completed ? 'Completed' : 'Not Started';
@@ -25,21 +26,21 @@ public class TaskWrapper {
         this.record = task;
         return task;
     }
-    
+
     public Task insertRecord() {
         generateRecord();
-        if (String.isBlank(record.Id)) 
+        if (String.isBlank(record.Id))
             insert record;
-        
+
         return record;
     }
-    
+
     public Task getRecord() {
         if (record == null) {
             generateRecord();
         }
         return record;
     }
-    
+
     public class WrongTaskSchemaException extends Exception {}
 }
