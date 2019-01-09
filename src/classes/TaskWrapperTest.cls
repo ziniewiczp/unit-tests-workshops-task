@@ -71,4 +71,29 @@ public class TaskWrapperTest {
 
         System.assertEquals(null, thrownException);
     }
+
+    @isTest
+    private static void testGetRecordExisting() {
+        String json = '"userId": 1,"id": 1,"title": "delectus aut autem","completed": false}';
+
+        Test.startTest();
+        TaskWrapper wrapper = new TaskWrapper(json);
+        wrapper.insertRecord();
+        Task record = wrapper.getRecord();
+        Test.stopTest();
+
+        System.assertNotEquals(null, record);
+    }
+
+    @isTest
+    private static void testGetRecordNonExisting() {
+        String json = '"userId": 1,"id": 1,"title": "delectus aut autem","completed": false}';
+
+        Test.startTest();
+        TaskWrapper wrapper = new TaskWrapper(json);
+        Task record = wrapper.getRecord();
+        Test.stopTest();
+
+        System.assertNotEquals(null, record); 
+    }
 }
