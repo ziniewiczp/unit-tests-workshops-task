@@ -94,6 +94,20 @@ public class TaskWrapperTest {
         Task record = wrapper.getRecord();
         Test.stopTest();
 
-        System.assertNotEquals(null, record); 
+        System.assertNotEquals(null, record);
+    }
+
+    @isTest
+    private static void testGenerateRecord() {
+        String json = '"userId": 1,"id": 1,"title": "delectus aut autem","completed": false}';
+
+        Test.startTest();
+        TaskWrapper wrapper = new TaskWrapper(json);
+        Task record = wrapper.generateRecord();
+        Test.stopTest();
+
+        System.assertEquals('Not Started', record.Status);
+        System.assertEquals('delectus aut autem', record.title);
+        System.assertEquals(1, record.ExternalTaskId__c);
     }
 }
