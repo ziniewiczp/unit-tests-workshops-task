@@ -54,7 +54,7 @@ public class TaskWrapperTest {
 
     @isTest
     private static void testInsertRecord() {
-        String json = '"userId": 1,"id": 1,"title": "delectus aut autem","completed": false}';
+        String json = '{"userId": 1,"id": 1,"title": "delectus aut autem","completed": false}';
         Exception thrownException;
 
         Test.startTest();
@@ -74,7 +74,7 @@ public class TaskWrapperTest {
 
     @isTest
     private static void testGetRecordExisting() {
-        String json = '"userId": 1,"id": 1,"title": "delectus aut autem","completed": false}';
+        String json = '{"userId": 1,"id": 1,"title": "delectus aut autem","completed": false}';
 
         Test.startTest();
         TaskWrapper wrapper = new TaskWrapper(json);
@@ -87,7 +87,7 @@ public class TaskWrapperTest {
 
     @isTest
     private static void testGetRecordNonExisting() {
-        String json = '"userId": 1,"id": 1,"title": "delectus aut autem","completed": false}';
+        String json = '{"userId": 1,"id": 1,"title": "delectus aut autem","completed": false}';
 
         Test.startTest();
         TaskWrapper wrapper = new TaskWrapper(json);
@@ -99,7 +99,7 @@ public class TaskWrapperTest {
 
     @isTest
     private static void testGenerateRecord() {
-        String json = '"userId": 1,"id": 1,"title": "delectus aut autem","completed": false}';
+        String json = '{"userId": 1,"id": 1,"title": "delectus aut autem","completed": false}';
 
         Test.startTest();
         TaskWrapper wrapper = new TaskWrapper(json);
@@ -107,7 +107,7 @@ public class TaskWrapperTest {
         Test.stopTest();
 
         System.assertEquals('Not Started', record.Status);
-        System.assertEquals('delectus aut autem', record.title);
+        System.assertEquals('delectus aut autem', record.Subject);
         System.assertEquals(1, record.ExternalTaskId__c);
     }
 }
