@@ -57,7 +57,7 @@ public class OpportunityValueWrapperTest {
     @isTest
     private static void testIsHighValuePositive() {
         Opportunity opp = [SELECT Amount FROM Opportunity];
-        opp.Amount = 1000000;
+        opp.Amount = OpportunityValueWrapper.HIGH_VALUE_AMOUNT + 1;
 
         Test.startTest();
         OpportunityValueWrapper oppValueWrapper = new OpportunityValueWrapper(opp);
@@ -70,7 +70,7 @@ public class OpportunityValueWrapperTest {
     @isTest
     private static void testIsHighValueNegative() {
         Opportunity opp = [SELECT Amount FROM Opportunity];
-        opp.Amount = 0;
+        opp.Amount = OpportunityValueWrapper.HIGH_VALUE_AMOUNT - 1;
 
         Test.startTest();
         OpportunityValueWrapper oppValueWrapper = new OpportunityValueWrapper(opp);
@@ -83,7 +83,7 @@ public class OpportunityValueWrapperTest {
     @isTest
     private static void testIsExtremelyLowValuePositive() {
         Opportunity opp = [SELECT Amount FROM Opportunity];
-        opp.Amount = 0;
+        opp.Amount = OpportunityValueWrapper.VERY_LOW_VALUE_AMOUNT - 1;
 
         Test.startTest();
         OpportunityValueWrapper oppValueWrapper = new OpportunityValueWrapper(opp);
@@ -96,7 +96,7 @@ public class OpportunityValueWrapperTest {
     @isTest
     private static void testIsExtremelyLowValueNegative() {
         Opportunity opp = [SELECT Amount FROM Opportunity];
-        opp.Amount = 120;
+        opp.Amount = OpportunityValueWrapper.VERY_LOW_VALUE_AMOUNT + 1;
 
         Test.startTest();
         OpportunityValueWrapper oppValueWrapper = new OpportunityValueWrapper(opp);
